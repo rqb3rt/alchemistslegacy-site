@@ -1,0 +1,148 @@
+/* The game's own palette: ForestUI's parchment, inks and frames. */
+@font-face { font-family: "Cinzel"; src: url("fonts/Cinzel-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Cinzel"; src: url("fonts/Cinzel-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+
+:root {
+  --page: rgb(222, 204, 170);
+  --page-pale: rgb(240, 228, 204);
+  --ink: rgb(58, 38, 22);
+  --ink-soft: rgb(88, 64, 42);
+  --ink-title: rgb(122, 62, 10);
+  --frame: rgb(190, 160, 116);
+  --rim: rgb(72, 46, 26);
+  --night: rgb(20, 22, 14);
+  --gold: rgb(255, 226, 140);
+  --cream: rgb(255, 248, 232);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--ink);
+  font: 18px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif;
+}
+
+h1, h2, h3, .brand, .footer-nav, .button { font-family: "Cinzel", Georgia, serif; }
+
+a { color: var(--ink-title); text-underline-offset: 2px; }
+a:hover { color: var(--ink); }
+a:focus-visible { outline: 3px solid var(--ink-title); outline-offset: 2px; border-radius: 2px; }
+
+/* Top bar on the inner pages */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background: var(--night);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.brand:hover { color: var(--cream); }
+.brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
+
+/* Home */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 48px 20px 40px;
+  text-align: center;
+  background: var(--night);
+  color: var(--cream);
+}
+/* The picture stops above the title, so the flask stays clear of it at any screen shape. */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 140px 0;
+}
+.hero::before { background: url("forest.jpg") center bottom / cover no-repeat; }
+.hero::after { background: linear-gradient(to bottom, rgba(20, 22, 14, 0) 78%, rgb(20, 22, 14) 100%); }
+.hero > * { position: relative; z-index: 1; }
+.hero h1 {
+  margin: 0 0 6px;
+  color: var(--gold);
+  font-size: clamp(34px, 7vw, 58px);
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+}
+.hero .tagline { margin: 0 0 8px; font-size: 21px; }
+.hero .soon { margin: 0; color: var(--gold); font-style: italic; }
+
+.about {
+  background: var(--page);
+  padding: 56px 20px 64px;
+}
+.about .inner { max-width: 720px; margin: 0 auto; }
+.about h2 { margin: 0 0 14px; color: var(--ink-title); font-size: 26px; }
+.about p { margin: 0 0 16px; }
+.about ul { margin: 0 0 16px; padding-left: 22px; }
+.about li { margin-bottom: 8px; }
+
+/* Long pages */
+main.page {
+  background: var(--page);
+  padding: 44px 20px 72px;
+}
+main.page .inner { max-width: 720px; margin: 0 auto; }
+main.page h1 { margin: 0 0 6px; color: var(--ink-title); font-size: clamp(28px, 6vw, 38px); line-height: 1.2; }
+main.page h2 { margin: 40px 0 10px; color: var(--ink-title); font-size: 22px; line-height: 1.3; }
+main.page h3 { margin: 26px 0 6px; color: var(--ink); font-size: 18px; line-height: 1.35; }
+main.page p { margin: 0 0 14px; }
+main.page ul { margin: 0 0 14px; padding-left: 22px; }
+main.page li { margin-bottom: 8px; }
+.updated { color: var(--ink-soft); font-style: italic; }
+
+.note {
+  margin: 22px 0;
+  padding: 16px 18px;
+  background: var(--page-pale);
+  border: 2px solid var(--rim);
+  border-radius: 10px;
+}
+.note p:last-child { margin-bottom: 0; }
+
+/* Who gets what */
+.table-wrap { overflow-x: auto; margin: 0 0 14px; }
+table { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 16px; line-height: 1.5; }
+th, td { padding: 10px 12px; border: 1px solid var(--rim); text-align: left; vertical-align: top; }
+th { background: var(--frame); font-family: "Cinzel", Georgia, serif; font-size: 14px; }
+td { background: var(--page-pale); }
+
+footer {
+  padding: 26px 20px 34px;
+  background: var(--night);
+  color: var(--page);
+  text-align: center;
+  font-size: 15px;
+}
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-bottom: 10px; font-size: 14px; }
+footer a { color: var(--gold); }
+footer a:hover { color: var(--cream); }
+footer p { margin: 0; }
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .topbar { padding: 12px 16px; }
+  .brand { font-size: 15px; }
+  main.page, .about { padding-left: 16px; padding-right: 16px; }
+}
