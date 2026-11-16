@@ -142,10 +142,13 @@ footer p { margin: 0; }
 footer .legal { margin-top: 14px; font-size: 13px; line-height: 1.6; color: rgba(255, 248, 232, 0.72); }
 footer .legal + .legal { margin-top: 4px; }
 footer .legal strong { color: var(--cream); font-weight: 700; }
+footer .legal .item { white-space: nowrap; }
 
 @media (max-width: 480px) {
   body { font-size: 17px; }
   .topbar { padding: 12px 16px; }
   .brand { font-size: 15px; }
   main.page, .about { padding-left: 16px; padding-right: 16px; }
+  footer .legal .sep { display: none; }
+  footer .legal .item { display: block; }
 }
